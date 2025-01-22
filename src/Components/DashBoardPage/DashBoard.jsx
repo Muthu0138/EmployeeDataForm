@@ -12,16 +12,16 @@ const Dashboard = () => {
   });
 
   const [users, setUsers] = useState([
-    { name: "John Doe", email: "john@example.com", phone: "1234567890", address: "123 Main St", gender: "Male" },
-    { name: "Jane Smith", email: "jane@example.com", phone: "0987654321", address: "456 Elm St", gender: "Female" },
-    { name: "Alice Brown", email: "alice@example.com", phone: "1122334455", address: "789 Oak St", gender: "Female" },
-    { name: "Bob Johnson", email: "bob@example.com", phone: "2233445566", address: "101 Pine St", gender: "Male" },
-    { name: "Charlie White", email: "charlie@example.com", phone: "3344556677", address: "202 Maple St", gender: "Male" },
-    { name: "David Lee", email: "david@example.com", phone: "4455667788", address: "303 Birch St", gender: "Male" },
-    { name: "Eva Green", email: "eva@example.com", phone: "5566778899", address: "404 Cedar St", gender: "Female" },
-    { name: "Frank Harris", email: "frank@example.com", phone: "6677889900", address: "505 Redwood St", gender: "Male" },
-    { name: "Grace Miller", email: "grace@example.com", phone: "7788990011", address: "606 Pineapple St", gender: "Female" },
-    { name: "Hank Moore", email: "hank@example.com", phone: "8899001122", address: "707 Willow St", gender: "Male" }
+    {id:1, name:"Aatish", email:"aa@gmail.com", gender:"Male", phone:"1234567890", address:"Chennai"},
+    {id:2, name:"Bella", email:"bb@gmail.com", gender:"Female", phone:"1234567891", address:"Vellore"},
+    {id:3, name:"Charu", email:"cc@gmail.com", gender:"Female", phone:"1234567892", address:"Erode"},
+    {id:4, name:"Dinesh", email:"dd@gmail.com", gender:"Male", phone:"1234567893", address:"Madurai"},
+    {id:5, name:"Elsa", email:"ee@gmail.com", gender:"Female", phone:"1234567894", address:"Ooty"},
+    {id:6, name:"Francis", email:"ff@gmail.com", gender:"Male", phone:"1234567895", address:"Salem"},
+    {id:7, name:"geetha", email:"gg@gmail.com", gender:"Female", phone:"1234567896", address:"Ranipet"},
+    {id:8, name:"Hensha", email:"hh@gmail.com", gender:"Female", phone:"1234567897", address:"Kanniyakumari"},
+    {id:9, name:"Isha", email:"ii@gmail.com", gender:"Female", phone:"1234567898", address:"Tirunelveli"},
+    {id:10, name:"Jagadeesh", email:"jj@gmail.com", gender:"Male", phone:"1234567899", address:"Dindigul"},
   ]);
 
   const handleOpenModal = () => {
@@ -34,8 +34,10 @@ const Dashboard = () => {
   };
 
   const handleSave = () => {
-    console.log("Form Data:", formData);
-    setUsers([...users, formData]);  // Add new user to the list
+    // Generate a new unique id for the new user
+    const newId = users.length ? users[users.length - 1].id + 1 : 1;
+    const newUser = { ...formData, id: newId };
+    setUsers([...users, newUser]); // Add the new user with id
     handleCloseModal();
   };
 
@@ -48,8 +50,9 @@ const Dashboard = () => {
         </button>
         
         <div className="user-list">
-          {users.map((user, index) => (
-            <div key={index} className="user-card">
+          {users.map((user) => (
+            <div key={user.id} className="user-card">
+              <p><strong>ID:</strong> {user.id}</p>  {/* Display user ID */}
               <p><strong>Name:</strong> {user.name}</p>
               <p><strong>Email:</strong> {user.email}</p>
               <p><strong>Phone:</strong> {user.phone}</p>
